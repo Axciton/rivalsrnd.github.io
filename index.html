@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<body>
+ <title>Random deck generator</title>
+<h2>Random deck generator</h2>
+<p>
+Tired of playing the same meta decks again and again. Here are some totally unique randomly generated decks. Have fun!
+</p>
+
+<div id="GDI"></div>
+<p>
+<b>GDI</b>
+<p>
+<button type="rndgdi" onclick="rndgdi()">randomize GDI deck</button>
+</p>
+<table>
+<tr><td id="gdi0"> 1</td></tr>
+<tr><td id="gdi1"> 1</td></tr>
+<tr><td id="gdi2"> 1</td></tr>
+<tr><td id="gdi3"> 1</td></tr>
+<tr><td id="gdi4"> 1</td></tr>
+<tr><td id="gdi5"> 1</td></tr>
+<tr><td id="gdi6"> 1</td></tr>
+</table>
+</p>
+
+
+
+<div id="NOD"></div>
+<p>
+<b>NOD</b>
+<p>
+<button type="rndgdi" onclick="rndnod()">randomize NOD deck</button>
+</p>
+<table>
+<tr><td id="nod0"> 1</td></tr>
+<tr><td id="nod1"> 1</td></tr>
+<tr><td id="nod2"> 1</td></tr>
+<tr><td id="nod3"> 1</td></tr>
+<tr><td id="nod4"> 1</td></tr>
+<tr><td id="nod5"> 1</td></tr>
+<tr><td id="nod6"> 1</td></tr>
+</table>
+
+</p>
+ <script>
+var gdicommanders = ['Lt. Strongarm', 'Dr. Liang','Gen. Solomon','Col. Jackson'];
+var gdiunits=['Riflemen','Missle Squad',' MG Squad','Jump Jet Troopers','Shockwave Troopers',' Sniper Team','Grenadier','War Dogs','Rhino','M.S.V.','Pitbull','Shatterer','Slingshot','M.L.R.S.','Predator Tank','A.P.C.','Drone Swarm','Talon','Mohawk Gunship','Razorback','Orca','Hammerhead','Orca Bomber','Wolverine','Disruptor','Juggernaut','Zone Trooper','Kodiak','Sandstorm','Titan','Mammonth Tank'];
+
+var nodcommanders = ['Seth', 'Kane','Jade','Oxanna'];
+var nodunits=['Militant','Laser Squad','Fanatic','Scavenger','Flame Troopers','Scarabs','Chemical Warriors','Mutant Marauder','Cyberwheel','Attack Bikes','Buggy','Chem Buggy','Scorpion Tank','Tick Tank','Giga-Cannon','Stealth Tank','Laser Drone','Venom','Banshee','Inferno','Phantom','Widowmaker','Flame Tank','Centurion','Confessor','Artillery','Basilisk','Rockworm','Cyborg','Avatar'];
+
+
+function randInt(i,j) {
+  return i + Math.floor(Math.random() * j);
+}
+
+function sampleS(n, m) {
+   let s = new Set();  
+   while(s.size < m) {
+      s.add(randInt(1,n));
+   }
+   return s;  
+}
+
+function sampleF2(n, m) {
+    let s = new Set();
+    for (let j = n - m + 1; j <= n; j++) { 
+        const t = randInt(1, j);
+        s.add( s.has(t) ? j : t );
+    }    
+    return s;
+}
+
+function getRandomArrayInt(max,num){
+  if (max<num){
+    return;
+  }
+  var anslist=Array.from(sampleF2(max, num));
+  for (var i=0; i<anslist.length; i++){
+    anslist[i]=anslist[i]-1;
+  }
+  return anslist.sort(function(a, b) {  return a - b;});	
+  }
+
+function rndgdi(){
+  var gdi_commander_id=randInt(0,gdicommanders.length)
+  document.getElementById("gdi0").innerHTML = gdicommanders[gdi_commander_id];
+  var gdi_units_indexes=getRandomArrayInt(gdiunits.length,6);
+  document.getElementById("gdi1").innerHTML = gdiunits[gdi_units_indexes[0]];
+  document.getElementById("gdi2").innerHTML = gdiunits[gdi_units_indexes[1]];
+  document.getElementById("gdi3").innerHTML = gdiunits[gdi_units_indexes[2]];
+  document.getElementById("gdi4").innerHTML = gdiunits[gdi_units_indexes[3]];
+  document.getElementById("gdi5").innerHTML = gdiunits[gdi_units_indexes[4]];  
+  document.getElementById("gdi6").innerHTML = gdiunits[gdi_units_indexes[5]];
+}
+
+function rndnod(){
+  var nod_commander_id=randInt(0,nodcommanders.length)
+  document.getElementById("nod0").innerHTML = nodcommanders[nod_commander_id];
+  var nod_units_indexes=getRandomArrayInt(nodunits.length,6);
+  console.log(nod_units_indexes);
+  document.getElementById("nod1").innerHTML = nodunits[nod_units_indexes[0]];
+  document.getElementById("nod2").innerHTML = nodunits[nod_units_indexes[1]];
+  document.getElementById("nod3").innerHTML = nodunits[nod_units_indexes[2]];
+  document.getElementById("nod4").innerHTML = nodunits[nod_units_indexes[3]];
+  document.getElementById("nod5").innerHTML = nodunits[nod_units_indexes[4]];  
+  document.getElementById("nod6").innerHTML = nodunits[nod_units_indexes[5]];
+}
+
+
+rndgdi();
+rndnod();
+
+</script> 
+
+
+</body>
+</html> 
