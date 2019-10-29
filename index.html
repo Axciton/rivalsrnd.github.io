@@ -42,8 +42,19 @@ Tired of playing the same meta decks again and again. Here are some totally uniq
 <tr><td id="nod6"> 1</td></tr>
 </table>
 
+
+<p>
+What faction to play?
+<p id="faction">
+1
+</p>
+<button type="rndgdi" onclick="rndfaction()">randomize faction</button>
+</p>
+
+
 </p>
  <script>
+var factions_list = ['play <b>GDI</b>', 'play <b>NOD</b>'];
 var gdicommanders = ['Lt. Strongarm', 'Dr. Liang','Gen. Solomon','Col. Jackson'];
 var gdiunits=['Riflemen','Missle Squad',' MG Squad','Jump Jet Troopers','Shockwave Troopers',' Sniper Team','Grenadier','War Dogs','Rhino','M.S.V.','Pitbull','Shatterer','Slingshot','M.L.R.S.','Predator Tank','A.P.C.','Drone Swarm','Talon','Mohawk Gunship','Razorback','Orca','Hammerhead','Orca Bomber','Wolverine','Disruptor','Juggernaut','Zone Trooper','Kodiak','Sandstorm','Titan','Mammonth Tank'];
 
@@ -109,8 +120,13 @@ function rndnod(){
 }
 
 
+function rndfaction(){
+ document.getElementById("faction").innerHTML = factions_list[randInt(0,2)];
+}
+
 rndgdi();
 rndnod();
+rndfaction();
 
 </script> 
 
